@@ -672,6 +672,151 @@ button {
     display: flex;
     justify-content: center;
 
+    /* Slide-Up Feature Cards */
+    .slide-up-card {
+        position: relative;
+        width: 100%;
+        min-width: 280px;
+        /* Responsive fix */
+        height: 350px;
+        /* Taller for content */
+        overflow: hidden;
+        border-radius: 15px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        transition: box-shadow 0.3s ease;
+    }
+
+    .slide-up-card:hover {
+        box-shadow: 0 0 30px rgba(0, 240, 255, 0.2);
+    }
+
+    .slide-up-card .card-icon-bg {
+        font-size: 5rem;
+        color: rgba(255, 255, 255, 0.1);
+        transition: transform 0.5s, opacity 0.5s;
+        filter: blur(2px);
+    }
+
+    .slide-up-card:hover .card-icon-bg {
+        transform: translateY(-50px) scale(0.8);
+        opacity: 0.5;
+        filter: blur(0);
+        color: var(--accent-cyan);
+        text-shadow: 0 0 20px var(--accent-cyan);
+    }
+
+    .slide-up-card .content {
+        position: absolute;
+        bottom: -180px;
+        /* Hide description initially */
+        width: 100%;
+        /* height: 160px; Removed fixed height to fit content */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 10;
+        flex-direction: column;
+        backdrop-filter: blur(15px);
+        -webkit-backdrop-filter: blur(15px);
+        background: rgba(10, 10, 20, 0.85);
+        /* Darker backdrop for readability */
+        box-shadow: 0 -10px 10px rgba(0, 0, 0, 0.2);
+        border-top: 1px solid rgba(255, 255, 255, 0.2);
+        transition: bottom 0.5s;
+        transition-delay: 0.1s;
+        padding: 1.5rem;
+        text-align: center;
+    }
+
+    .slide-up-card:hover .content {
+        bottom: 0px;
+        transition-delay: 0s;
+    }
+
+    .slide-up-card .content .contentBx h3 {
+        color: #fff;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        font-weight: 600;
+        font-size: 1.1rem;
+        line-height: 1.2em;
+        margin: 0 0 10px;
+        /* Adjusted margin */
+        transition: 0.5s;
+        opacity: 1;
+        /* Keep title visible or faded? User snippet has opacity 0 initially */
+        transform: translateY(0);
+    }
+
+    /* User snippet had title animating in. Let's make it pop up slightly */
+    .slide-up-card:not(:hover) .content .contentBx h3 {
+        transform: translateY(20px);
+        /* We keep opacity 1 so it acts as a label before hover if we want, 
+       but for true slide up we'll follow the pattern of revealing it.
+       Actually, users snippet hides it. Let's hide it to be faithful. */
+        opacity: 0.7;
+    }
+
+    .slide-up-card:not(:hover) .content {
+        /* Show just the top tip (Title)? Or hide completely?
+       "bottom: -160px" usually hides it. 
+       Let's stick to the request: Reveal on hover. */
+        bottom: -220px;
+        /* Fully hidden except maybe a peek? No, plain. */
+    }
+
+    /* Re-reading user CSS: .content bottom -160px, height 160px. So effectively fully visible on hover, fully hidden (flush with bottom) initially? 
+   No, bottom: -160px on a relative container means it's pushed DOWN out of view.
+   So let's tweak to ensure the Title is visible at the bottom as a teaser, then it slides up to reveal details.
+*/
+
+    .slide-up-card .content {
+        bottom: -140px;
+        /* Show top 60px roughly? Depends on height. */
+        height: 200px;
+        /* Fixed height for animation consistency */
+    }
+
+    .slide-up-card .content .contentBx h3 {
+        opacity: 1;
+        /* Always show title */
+        transform: translateY(0);
+        margin-bottom: 1rem;
+        color: var(--accent-cyan);
+    }
+
+    .slide-up-card .details {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: 0.5s;
+        transition-delay: 0s;
+        /* Instant hide */
+    }
+
+    .slide-up-card:hover .details {
+        opacity: 1;
+        transform: translateY(0);
+        transition-delay: 0.2s;
+        /* Delayed reveal */
+    }
+
+    .slide-up-card p {
+        font-size: 0.9rem;
+        color: var(--text-secondary);
+        margin-bottom: 1rem;
+        line-height: 1.4;
+    }
+
+    /* Badge styling */
+    .slide-up-card .card-badge {
+        opacity: 0.8;
+    }
+
     /* 3D Glass Tilt Cards */
     .cards-grid {
         perspective: 1000px;
