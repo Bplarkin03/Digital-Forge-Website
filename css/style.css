@@ -1044,7 +1044,10 @@ button {
 [data-glow] .card-icon,
 [data-glow] h3,
 [data-glow] p {
-    display: none;
+    position: relative;
+    z-index: 20;
+    pointer-events: none;
+    /* Let hover pass through text */
 }
 
 /* =========================================
@@ -1056,26 +1059,27 @@ button {
         --spacing-lg: 3rem;
         --spacing-xl: 4rem;
     }
-    
+
     .hero-title {
         font-size: clamp(2.5rem, 10vw, 4rem);
     }
-    
+
     .journey-grid {
         flex-direction: column;
         gap: 3rem;
     }
-    
+
     .journey-grid::before {
-        display: none; 
+        display: none;
     }
-    
+
     .journey-step {
         width: 100%;
-        max-width: 300px; /* Limit width */
+        max-width: 300px;
+        /* Limit width */
         margin: 0 auto;
     }
-    
+
     /* Reveal content on touch devices automatically or reducing friction */
     /* Check for hover:none capability (Touch) */
     @media (hover: none) {
@@ -1085,12 +1089,12 @@ button {
             backdrop-filter: blur(10px);
             border-top: 1px solid rgba(255, 255, 255, 0.1);
         }
-        
+
         .electric-glass-card .details {
             opacity: 1;
             transform: translateY(0);
         }
-        
+
         .electric-glass-card .card-badge {
             opacity: 1;
             transform: translateY(0) scale(1);
