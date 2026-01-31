@@ -949,12 +949,16 @@ button {
    ========================================= */
 [data-glow] {
     --border-size: 2px;
-    --spotlight-size: 300px;
+    --spotlight-size: 100px;
+    /* Reduced to 100px */
     --hue: 180;
     /* Cyan matching brand */
-    --bg-spot-opacity: 0.1;
-    --border-light-opacity: 1;
-    --border-spot-opacity: 1;
+    --bg-spot-opacity: 0.05;
+    /* Dimmer background */
+    --border-light-opacity: 0.5;
+    /* Dimmer spotlight core */
+    --border-spot-opacity: 0.5;
+    /* Dimmer border glow */
 
     position: relative;
     background-image: radial-gradient(var(--spotlight-size) var(--spotlight-size) at calc(var(--x, 0) * 1px) calc(var(--y, 0) * 1px),
