@@ -282,6 +282,62 @@ button {
     transform: translateY(-2px);
 }
 
+/* Magic UI Inspired Pulsating Button */
+.pulsating-button {
+    position: relative;
+    background: var(--text-primary);
+    color: var(--bg-dark);
+    border: none;
+    border-radius: 9999px;
+    /* Rounded pill shape */
+    padding: 1rem 2rem;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s ease;
+    z-index: 1;
+    overflow: visible;
+    /* Needed for the pulse ring */
+}
+
+.pulsating-button::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    background: inherit;
+    border-radius: inherit;
+    opacity: 0.7;
+    z-index: -1;
+    animation: pulse-ring 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.pulsating-button:hover {
+    transform: scale(1.05);
+}
+
+@keyframes pulse-ring {
+    0% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 0.5;
+    }
+
+    100% {
+        transform: translate(-50%, -50%) scale(2.5);
+        opacity: 0;
+    }
+}
+
+/* Secondary ghost button style update to match pill shape */
+.cta-button.secondary {
+    border-radius: 9999px;
+}
+
 /* Journey Section */
 .journey-grid {
     display: flex;
