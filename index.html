@@ -22,6 +22,35 @@
 </head>
 
 <body>
+    <!-- Electric Border Filter SVG -->
+    <svg style="position: absolute; width: 0; height: 0;" aria-hidden="true">
+        <defs>
+            <filter id="turbulent-displace" color-interpolation-filters="sRGB" x="-20%" y="-20%" width="140%"
+                height="140%">
+                <feTurbulence type="turbulence" baseFrequency="0.02" numOctaves="10" result="noise1" seed="1" />
+                <feOffset in="noise1" dx="0" dy="0" result="offsetNoise1">
+                    <animate attributeName="dy" values="700; 0" dur="6s" repeatCount="indefinite" calcMode="linear" />
+                </feOffset>
+                <feTurbulence type="turbulence" baseFrequency="0.02" numOctaves="10" result="noise2" seed="1" />
+                <feOffset in="noise2" dx="0" dy="0" result="offsetNoise2">
+                    <animate attributeName="dy" values="0; -700" dur="6s" repeatCount="indefinite" calcMode="linear" />
+                </feOffset>
+                <feTurbulence type="turbulence" baseFrequency="0.02" numOctaves="10" result="noise1" seed="2" />
+                <feOffset in="noise1" dx="0" dy="0" result="offsetNoise3">
+                    <animate attributeName="dx" values="490; 0" dur="6s" repeatCount="indefinite" calcMode="linear" />
+                </feOffset>
+                <feTurbulence type="turbulence" baseFrequency="0.02" numOctaves="10" result="noise2" seed="2" />
+                <feOffset in="noise2" dx="0" dy="0" result="offsetNoise4">
+                    <animate attributeName="dx" values="0; -490" dur="6s" repeatCount="indefinite" calcMode="linear" />
+                </feOffset>
+                <feComposite in="offsetNoise1" in2="offsetNoise2" result="part1" />
+                <feComposite in="offsetNoise3" in2="offsetNoise4" result="part2" />
+                <feBlend in="part1" in2="part2" mode="color-dodge" result="combinedNoise" />
+                <feDisplacementMap in="SourceGraphic" in2="combinedNoise" scale="30" xChannelSelector="R"
+                    yChannelSelector="B" />
+            </filter>
+        </defs>
+    </svg>
     <div id="canvas-container"></div>
 
     <header class="main-header">
@@ -77,46 +106,93 @@
                 <p>Turn your operations into a revenue engine.</p>
             </div>
             <div class="cards-grid">
-                <div class="card">
-                    <div class="card-badge">100% Response Rate</div>
-                    <div class="card-icon">📞</div>
-                    <h3>Front Desk Freedom</h3>
-                    <p>Your phones never go unanswered. Our AI qualifies leads and books appointments instantly—even on
-                        weekends.</p>
+                <!-- Card 1 -->
+                <div class="card-container">
+                    <div class="inner-container">
+                        <div class="border-outer"></div>
+                        <div class="glow-layer"></div>
+                    </div>
+                    <div class="content-container">
+                        <div class="card-badge">100% Response Rate</div>
+                        <div class="card-icon">📞</div>
+                        <h3>Front Desk Freedom</h3>
+                        <p>Your phones never go unanswered. Our AI qualifies leads and books appointments instantly—even
+                            on weekends.</p>
+                    </div>
                 </div>
-                <div class="card">
-                    <div class="card-badge">Fully Booked</div>
-                    <div class="card-icon">📅</div>
-                    <h3>Calendar Autopilot</h3>
-                    <p>Stop chasing prospects. Fill your sales pipeline with qualified meetings automatically while you
-                        sleep.</p>
+
+                <!-- Card 2 -->
+                <div class="card-container">
+                    <div class="inner-container">
+                        <div class="border-outer"></div>
+                        <div class="glow-layer"></div>
+                    </div>
+                    <div class="content-container">
+                        <div class="card-badge">Fully Booked</div>
+                        <div class="card-icon">📅</div>
+                        <h3>Calendar Autopilot</h3>
+                        <p>Stop chasing prospects. Fill your sales pipeline with qualified meetings automatically while
+                            you sleep.</p>
+                    </div>
                 </div>
-                <div class="card">
-                    <div class="card-badge">Instant Training</div>
-                    <div class="card-icon">🧠</div>
-                    <h3>Instant Expertise</h3>
-                    <p>Slash onboarding time. Give your team instant answers from an AI trained on your entire business
-                        history.</p>
+
+                <!-- Card 3 -->
+                <div class="card-container">
+                    <div class="inner-container">
+                        <div class="border-outer"></div>
+                        <div class="glow-layer"></div>
+                    </div>
+                    <div class="content-container">
+                        <div class="card-badge">Instant Training</div>
+                        <div class="card-icon">🧠</div>
+                        <h3>Instant Expertise</h3>
+                        <p>Slash onboarding time. Give your team instant answers from an AI trained on your entire
+                            business history.</p>
+                    </div>
                 </div>
-                <div class="card">
-                    <div class="card-badge">+30% Rebooking</div>
-                    <div class="card-icon">📊</div>
-                    <h3>Revenue Intelligence</h3>
-                    <p>Mine your database for gold. Automatically reactivate dormant clients and maximize customer
-                        lifetime value.</p>
+
+                <!-- Card 4 -->
+                <div class="card-container">
+                    <div class="inner-container">
+                        <div class="border-outer"></div>
+                        <div class="glow-layer"></div>
+                    </div>
+                    <div class="content-container">
+                        <div class="card-badge">+30% Rebooking</div>
+                        <div class="card-icon">📊</div>
+                        <h3>Revenue Intelligence</h3>
+                        <p>Mine your database for gold. Automatically reactivate dormant clients and maximize customer
+                            lifetime value.</p>
+                    </div>
                 </div>
-                <div class="card">
-                    <div class="card-badge">Zero Lead Loss</div>
-                    <div class="card-icon">🔁</div>
-                    <h3>Lead Nurture Engine</h3>
-                    <p>Stop chasing ghosts. Our AI instantly engages new leads via SMS/Email and nurtures them until
-                        they book.</p>
+
+                <!-- Card 5 -->
+                <div class="card-container">
+                    <div class="inner-container">
+                        <div class="border-outer"></div>
+                        <div class="glow-layer"></div>
+                    </div>
+                    <div class="content-container">
+                        <div class="card-badge">Zero Lead Loss</div>
+                        <div class="card-icon">🔁</div>
+                        <h3>Lead Nurture Engine</h3>
+                        <p>Stop chasing ghosts. Our AI instantly engages new leads via SMS/Email and nurtures them until
+                            they book.</p>
+                    </div>
                 </div>
-                <div class="card">
-                    <div class="card-badge">#1 Ranking</div>
-                    <div class="card-icon">⭐</div>
-                    <h3>Market Dominance</h3>
-                    <p>Automate 5-star review generation to push your business to the top of Google Maps.</p>
+
+                <!-- Card 6 -->
+                <div class="card-container">
+                    <div class="inner-container">
+                        <div class="border-outer"></div>
+                        <div class="glow-layer"></div>
+                    </div>
+                    <div class="content-container">
+                        <div class="card-badge">#1 Ranking</div>
+                        <div class="card-icon">⭐</div>
+                        <h3>Market Dominance</h3>
+                        <p>Automate 5-star review generation to push your business to the top of Google Maps.</p>
+                    </div>
                 </div>
             </div>
         </section>

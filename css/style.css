@@ -178,25 +178,78 @@ button {
     margin: 0 auto;
 }
 
-/* Card Styles */
-.card {
-    background: rgba(255, 255, 255, 0.03);
-    padding: var(--spacing-md);
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    border-radius: 12px;
-    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275),
-        border-color 0.3s ease,
-        box-shadow 0.3s ease;
-    cursor: default;
+/* Electric Border Card Styles */
+.card-container {
     position: relative;
-    overflow: hidden;
+    width: 100%;
+    min-height: 300px;
+    padding: var(--spacing-xs);
+    /* Padding for the wobbly border not to clip */
+    isolation: isolate;
 }
 
+.inner-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.border-outer {
+    position: absolute;
+    inset: 4px;
+    /* Thickness offset */
+    border: 2px solid var(--accent-cyan);
+    border-radius: 12px;
+    filter: url(#turbulent-displace);
+    opacity: 0.8;
+}
+
+.glow-layer {
+    position: absolute;
+    inset: 4px;
+    border: 2px solid var(--accent-blue);
+    border-radius: 12px;
+    filter: url(#turbulent-displace) blur(4px);
+    opacity: 0.6;
+}
+
+.content-container {
+    position: relative;
+    z-index: 2;
+    background: rgba(5, 5, 5, 0.8);
+    /* Dark background to cover lines behind content */
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(0, 240, 255, 0.1);
+    /* Inner static subtle border */
+    border-radius: 12px;
+    padding: var(--spacing-md);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.card-container:hover .content-container {
+    transform: translateY(-5px);
+    background: rgba(5, 5, 5, 0.9);
+    border-color: rgba(0, 240, 255, 0.3);
+}
+
+.card-container:hover .border-outer {
+    border-color: var(--accent-cyan);
+    opacity: 1;
+}
+
+/* Ensure existing badge positioning works within content-container */
 .card-badge {
     position: absolute;
     top: 1rem;
     right: 1rem;
-    background: rgba(255, 255, 255, 0.05);
+    background: rgba(0, 240, 255, 0.1);
     border: 1px solid var(--accent-cyan);
     color: var(--accent-cyan);
     font-size: 0.75rem;
@@ -205,12 +258,6 @@ button {
     text-transform: uppercase;
     letter-spacing: 0.5px;
     font-weight: 600;
-}
-
-.card:hover {
-    transform: translateY(-10px);
-    border-color: var(--accent-cyan);
-    box-shadow: 0 10px 30px rgba(0, 240, 255, 0.1);
 }
 
 .scarcity-text {
@@ -231,7 +278,7 @@ button {
     transition: transform 0.3s ease;
 }
 
-.card:hover .card-icon {
+.card-container:hover .card-icon {
     transform: scale(1.1) rotate(5deg);
 }
 
