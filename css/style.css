@@ -645,3 +645,112 @@ button {
         opacity: 1;
     }
 }
+
+/* Volumetric Light Social Icons */
+:root {
+    --facebook-color: #3b5998;
+    --twitter-color: #00acee;
+    --instagram-color: #E1306C;
+    --linkedin-color: #0077B5;
+    --icon-size: 60px;
+}
+
+.social-icons-wrap {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+    margin-top: 3rem;
+    padding-bottom: 2rem;
+}
+
+.social-icon {
+    position: relative;
+    width: var(--icon-size);
+    height: var(--icon-size);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    text-decoration: none;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(5px);
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.social-icon i {
+    font-size: calc(var(--icon-size) / 2);
+    color: #fff;
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
+    transition: all 0.3s ease;
+}
+
+/* Volumetric Light Effect on hover */
+.social-icon::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, var(--icon-color) 0%, transparent 60%);
+    border-radius: 50%;
+    box-shadow: 0 0 50px var(--icon-color);
+    opacity: 0;
+    transition: opacity 0.5s ease, box-shadow 0.5s ease;
+    z-index: -1;
+}
+
+/* Specific Hover Colors */
+.social-icon.facebook:hover {
+    --icon-color: var(--facebook-color);
+}
+
+.social-icon.twitter:hover {
+    --icon-color: var(--twitter-color);
+}
+
+.social-icon.instagram:hover {
+    --icon-color: var(--instagram-color);
+}
+
+.social-icon.linkedin:hover {
+    --icon-color: var(--linkedin-color);
+}
+
+.social-icon.facebook:hover::before {
+    box-shadow: 0 0 80px var(--facebook-color);
+    opacity: 1;
+}
+
+.social-icon.twitter:hover::before {
+    box-shadow: 0 0 80px var(--twitter-color);
+    opacity: 1;
+}
+
+.social-icon.instagram:hover::before {
+    box-shadow: 0 0 80px var(--instagram-color);
+    opacity: 1;
+}
+
+.social-icon.linkedin:hover::before {
+    box-shadow: 0 0 80px var(--linkedin-color);
+    opacity: 1;
+}
+
+.social-icon:hover {
+    transform: scale(1.1) translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+    background: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.4);
+}
+
+.social-icon:hover i {
+    color: white;
+    transform: scale(1.1);
+    text-shadow: 0 0 15px var(--icon-color);
+}
