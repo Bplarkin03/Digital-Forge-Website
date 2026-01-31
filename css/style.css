@@ -397,6 +397,11 @@ button {
     align-items: center;
     justify-content: center;
     z-index: 1;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.border-light-btn:hover {
+    box-shadow: 0 0 15px var(--accent-cyan), 0 0 30px rgba(0, 85, 255, 0.4);
 }
 
 .border-light-btn:active {
