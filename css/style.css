@@ -888,23 +888,13 @@ button {
 }
 
 /* Description Details */
-/* Description Details */
+/* Description Details - Simplified now that badge is gone */
 .electric-glass-card .details {
     opacity: 0;
     transform: translateY(20px);
     transition: 0.4s;
-    /* Strict Flex Layout */
-    display: flex !important;
-    flex-direction: column !important;
-    justify-content: flex-start;
-    align-items: center;
-    gap: 20px !important;
-    /* Force space */
     width: 100%;
-    height: auto;
-    /* Allow growth */
-    position: relative;
-    /* Ensure layout context */
+    /* No need for forcing flex column gap anymore if only p exists */
 }
 
 .electric-glass-card:hover .details {
@@ -915,28 +905,41 @@ button {
 
 .electric-glass-card p {
     font-size: 0.95rem;
-    /* Slightly clearer text */
     color: var(--text-secondary);
     line-height: 1.6;
-    margin: 0 !important;
+    margin: 0;
     padding: 0;
     width: 100%;
-    height: auto;
-    display: block;
 }
 
+/* Floating Badge - Top Right */
 .electric-glass-card .card-badge {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 20;
+    /* Above everything */
+
     background: rgba(0, 240, 255, 0.15);
     color: var(--accent-cyan);
     padding: 6px 16px;
     border-radius: 99px;
     font-size: 0.75rem;
     font-weight: 700;
-    display: block;
-    /* Flex item behaves as block */
+
     border: 1px solid rgba(0, 240, 255, 0.3);
     white-space: nowrap;
-    flex-shrink: 0;
-    margin-top: 5px;
-    /* Backup spacing */
+
+    /* Animation - Pop up/in */
+    opacity: 0;
+    transform: translateY(-10px) scale(0.9);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    pointer-events: none;
+    /* Let hover pass through to card */
+}
+
+.electric-glass-card:hover .card-badge {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    transition-delay: 0.1s;
 }
