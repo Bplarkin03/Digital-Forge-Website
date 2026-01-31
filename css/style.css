@@ -893,13 +893,18 @@ button {
     opacity: 0;
     transform: translateY(20px);
     transition: 0.4s;
-    /* Use Flexbox to manage layout and prevent overlap */
-    display: flex;
-    flex-direction: column;
+    /* Strict Flex Layout */
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: flex-start;
     align-items: center;
-    gap: 15px;
-    /* Forced spacing between text and badge */
+    gap: 20px !important;
+    /* Force space */
     width: 100%;
+    height: auto;
+    /* Allow growth */
+    position: relative;
+    /* Ensure layout context */
 }
 
 .electric-glass-card:hover .details {
@@ -909,26 +914,29 @@ button {
 }
 
 .electric-glass-card p {
-    font-size: 0.9rem;
+    font-size: 0.95rem;
+    /* Slightly clearer text */
     color: var(--text-secondary);
-    line-height: 1.5;
-    margin: 0;
-    /* Let gap handle spacing */
+    line-height: 1.6;
+    margin: 0 !important;
+    padding: 0;
     width: 100%;
+    height: auto;
+    display: block;
 }
 
 .electric-glass-card .card-badge {
     background: rgba(0, 240, 255, 0.15);
     color: var(--accent-cyan);
     padding: 6px 16px;
-    /* Slightly larger padding */
     border-radius: 99px;
-    font-size: 0.8rem;
+    font-size: 0.75rem;
     font-weight: 700;
-    display: inline-block;
+    display: block;
+    /* Flex item behaves as block */
     border: 1px solid rgba(0, 240, 255, 0.3);
     white-space: nowrap;
-    /* Prevent wrapping */
     flex-shrink: 0;
-    /* Prevent crushing */
+    margin-top: 5px;
+    /* Backup spacing */
 }
