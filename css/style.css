@@ -954,29 +954,30 @@ button {
     /* Cyan for inner spotlight */
     --border-hue: 30;
     /* Orange for border */
-    --bg-spot-opacity: 0.02;
-    /* Extremely subtle background */
-    --border-light-opacity: 0.2;
-    /* 20% brightness spotlight core */
+    --bg-spot-opacity: 0.05;
+    /* 5% Brightness requested */
+    --border-light-opacity: 0.05;
+    /* 5% brightness core */
     --border-spot-opacity: 1;
     /* Keep border opaque/bright so orange is visible */
 
     position: relative;
     background-image: radial-gradient(var(--spotlight-size) var(--spotlight-size) at calc(var(--x, 0) * 1px) calc(var(--y, 0) * 1px),
-            hsl(var(--hue, 180) 100% 70% / var(--bg-spot-opacity, 0.1)), transparent);
-    background-color: rgba(255, 255, 255, 0.05);
-    /* Base glass tint */
+            hsl(var(--hue, 180) 100% 70% / var(--bg-spot-opacity, 0.05)), transparent);
+    background-color: rgba(255, 255, 255, 0.02);
+    /* Very faint base tint */
     background-size: calc(100% + (2 * var(--border-size))) calc(100% + (2 * var(--border-size)));
     background-position: 50% 50%;
     background-attachment: scroll;
-    /* Fixed causes issues in some scrolling contexts */
     border: var(--border-size) solid transparent;
-    /* Hide default border to let mask show */
+    /* Reserve space for border */
     border-radius: 16px;
-    overflow: hidden;
-    /* Keep children inside */
+    /* removed overflow: hidden to allow border inset -2px to show? No, inset -2px IS inside border box if border is transparent? 
+       Actually, if border is set, padding box is inside. Inset -2px relative to padding box = border outer edge.
+       With overflow: hidden, it clips to border box.
+       However, let's TRY removing overflow: hidden just in case it's clipping sub-pixels or z-index issues. */
+    /* overflow: hidden;  <-- Removed to ensure border visibility */
     transition: transform 0.1s;
-    /* Smoothing for tilt if present */
 }
 
 /* Masked Border Glow (The "Electric" line) - NOW ORANGE */
@@ -985,6 +986,7 @@ button {
     pointer-events: none;
     position: absolute;
     inset: calc(var(--border-size) * -1);
+    /* Matches border outer edge */
     border: var(--border-size) solid transparent;
     border-radius: 16px;
     background-attachment: scroll;
@@ -1002,9 +1004,7 @@ button {
     -webkit-mask-clip: padding-box, border-box;
     mask-clip: padding-box, border-box;
     -webkit-mask-composite: xor;
-    /* Standard is different from composite: intersect */
     mask-composite: exclude;
-    /* Standard property for "show border only" */
 
     z-index: 2;
 }
@@ -1016,13 +1016,13 @@ button {
     position: absolute;
     inset: 0;
     background-image: radial-gradient(calc(var(--spotlight-size) * 0.5) calc(var(--spotlight-size) * 0.5) at calc(var(--x, 0) * 1px) calc(var(--y, 0) * 1px),
-            hsl(0 100% 100% / var(--border-light-opacity, 0.2)), transparent 100%);
+            hsl(0 100% 100% / var(--border-light-opacity, 0.05)), transparent 100%);
     z-index: 2;
     border-radius: 16px;
 }
 
 /* Remove default glass Card borders if they interfere */
 .glass-card[data-glow] {
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    /* Fallback weak border */
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    /* Very weak fallback */
 }
