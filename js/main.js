@@ -54,6 +54,28 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    // Spotlight Glow Effect
+    const glowCards = document.querySelectorAll('[data-glow]');
+
+    const syncPointer = ({ x, y }) => {
+        document.documentElement.style.setProperty('--x', x.toFixed(2));
+        document.documentElement.style.setProperty('--xp', (x / window.innerWidth).toFixed(2));
+        document.documentElement.style.setProperty('--y', y.toFixed(2));
+        document.documentElement.style.setProperty('--yp', (y / window.innerHeight).toFixed(2));
+    };
+
+    // We need to update --x and --y RELATIVE to the card for the card's effect
+    glowCards.forEach(card => {
+        card.addEventListener('mousemove', (e) => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+
+            card.style.setProperty('--x', x);
+            card.style.setProperty('--y', y);
+        });
+    });
+
     // Button Mouse Tracking for Border Light Effect
     document.querySelectorAll('button').forEach(btn => {
         btn.addEventListener('mousemove', (e) => {
