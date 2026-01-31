@@ -178,6 +178,7 @@ button {
     margin: 0 auto;
 }
 
+/* Card Styles */
 .card {
     background: rgba(255, 255, 255, 0.03);
     padding: var(--spacing-md);
@@ -187,12 +188,40 @@ button {
         border-color 0.3s ease,
         box-shadow 0.3s ease;
     cursor: default;
+    position: relative;
+    overflow: hidden;
+}
+
+.card-badge {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--accent-cyan);
+    color: var(--accent-cyan);
+    font-size: 0.75rem;
+    padding: 0.25rem 0.6rem;
+    border-radius: 20px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: 600;
 }
 
 .card:hover {
     transform: translateY(-10px);
     border-color: var(--accent-cyan);
     box-shadow: 0 10px 30px rgba(0, 240, 255, 0.1);
+}
+
+.scarcity-text {
+    color: #ffaa00;
+    /* Amber warning color */
+    margin-top: 5px;
+    /* Reduced margin to keep it close to header if needed, or adjust */
+    margin-bottom: var(--spacing-sm);
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
 }
 
 .card-icon {
