@@ -955,38 +955,41 @@ button {
 }
 
 /* Base Variables for the Glow Cards */
+/* Base Variables for the Glow Cards */
 [data-glow] {
     --backdrop: hsl(0 0% 60% / 0.15);
     --radius: 12;
     --border: 2;
-    --backup-border: rgba(255, 255, 255, 0.02);
-    /* Fainter backup border */
-    --size: 200;
+    --backup-border: rgba(255, 255, 255, 0.02); /* Fainter backup border */
+    --size: 200; 
     --hue: 210;
     --saturation: 100;
     --lightness: 70;
-    --glow-opacity: 0.0005;
-    /* 0.05% - Extremely subtle */
-
+    --glow-opacity: 0.01; /* Increased by ~1% (from 0.05% to 1%) */
+    
     --border-size: calc(var(--border) * 1px);
     --spotlight-size: calc(var(--size) * 1px);
-
+    
     font-family: "Geist Sans", "SF Pro Text", system-ui, sans-serif;
     border-radius: calc(var(--radius) * 1px);
     position: relative;
     z-index: 10;
     overflow: visible;
-
+    
     /* Base Glass Background */
     background-color: var(--backdrop);
     background-size: calc(100% + (2 * var(--border-size))) calc(100% + (2 * var(--border-size)));
     background-position: 50% 50%;
     border: var(--border-size) solid var(--backup-border);
     transition: transform 0.1s;
-
+    
     /* Dynamic Background Spotlight (Inner Wash) */
-    background-image: radial-gradient(var(--spotlight-size) var(--spotlight-size) at calc(var(--x, 0) * 1px) calc(var(--y, 0) * 1px),
-            hsl(var(--hue, 210) calc(var(--saturation, 100) * 1%) calc(var(--lightness, 70) * 1%) / var(--glow-opacity, 0.001)), transparent);
+    background-image: radial-gradient(
+        var(--spotlight-size) var(--spotlight-size) at
+        calc(var(--x, 0) * 1px)
+        calc(var(--y, 0) * 1px),
+        hsl(var(--hue, 210) calc(var(--saturation, 100) * 1%) calc(var(--lightness, 70) * 1%) / var(--glow-opacity, 0.01)), transparent
+    );
 }
 
 /* 
@@ -1005,13 +1008,13 @@ button {
     background-size: calc(100% + (2 * var(--border-size))) calc(100% + (2 * var(--border-size)));
     background-repeat: no-repeat;
     background-position: 50% 50%;
-
+    
     mask:
         linear-gradient(transparent, transparent),
         linear-gradient(white, white);
     mask-clip: padding-box, border-box;
-    mask-composite: exclude;
-    -webkit-mask:
+    mask-composite: exclude; 
+    -webkit-mask: 
         linear-gradient(transparent, transparent),
         linear-gradient(white, white);
     -webkit-mask-clip: padding-box, border-box;
@@ -1021,16 +1024,24 @@ button {
 /* This is the emphasis light (Border Hotspot) */
 [data-glow]::before {
     z-index: 2;
-    background-image: radial-gradient(calc(var(--spotlight-size) * 0.75) calc(var(--spotlight-size) * 0.75) at calc(var(--x, 0) * 1px) calc(var(--y, 0) * 1px),
-            hsl(var(--hue, 210) calc(var(--saturation, 100) * 1%) calc(var(--lightness, 50) * 1%) / 0.05), transparent 100%);
+    background-image: radial-gradient(
+        calc(var(--spotlight-size) * 0.75) calc(var(--spotlight-size) * 0.75) at
+        calc(var(--x, 0) * 1px)
+        calc(var(--y, 0) * 1px),
+        hsl(var(--hue, 210) calc(var(--saturation, 100) * 1%) calc(var(--lightness, 50) * 1%) / 1), transparent 100%
+    );
     filter: brightness(2);
 }
 
 /* This is the spotlight (Inner/Outer Glow spill) */
 [data-glow]::after {
     z-index: 1;
-    background-image: radial-gradient(calc(var(--spotlight-size) * 0.5) calc(var(--spotlight-size) * 0.5) at calc(var(--x, 0) * 1px) calc(var(--y, 0) * 1px),
-            hsl(0 100% 100% / 0.01), transparent 100%);
+    background-image: radial-gradient(
+        calc(var(--spotlight-size) * 0.5) calc(var(--spotlight-size) * 0.5) at
+        calc(var(--x, 0) * 1px)
+        calc(var(--y, 0) * 1px),
+        hsl(0 100% 100% / 0.1), transparent 100% 
+    );
 }
 
 /* Remove default glass Card borders/shadows to let the new effect take over */
