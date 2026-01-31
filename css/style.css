@@ -888,11 +888,18 @@ button {
 }
 
 /* Description Details */
+/* Description Details */
 .electric-glass-card .details {
     opacity: 0;
-    /* Hidden by default */
     transform: translateY(20px);
     transition: 0.4s;
+    /* Use Flexbox to manage layout and prevent overlap */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    /* Forced spacing between text and badge */
+    width: 100%;
 }
 
 .electric-glass-card:hover .details {
@@ -905,16 +912,23 @@ button {
     font-size: 0.9rem;
     color: var(--text-secondary);
     line-height: 1.5;
-    margin-bottom: 1rem;
+    margin: 0;
+    /* Let gap handle spacing */
+    width: 100%;
 }
 
 .electric-glass-card .card-badge {
     background: rgba(0, 240, 255, 0.15);
     color: var(--accent-cyan);
-    padding: 4px 12px;
+    padding: 6px 16px;
+    /* Slightly larger padding */
     border-radius: 99px;
     font-size: 0.8rem;
     font-weight: 700;
     display: inline-block;
     border: 1px solid rgba(0, 240, 255, 0.3);
+    white-space: nowrap;
+    /* Prevent wrapping */
+    flex-shrink: 0;
+    /* Prevent crushing */
 }
