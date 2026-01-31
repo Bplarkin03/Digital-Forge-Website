@@ -787,3 +787,134 @@ button {
     transform: scale(1.1);
     text-shadow: 0 0 15px var(--icon-color);
 }
+
+/* Hybrid Electric & Glass Slide-Up Cards */
+.electric-glass-card {
+    position: relative;
+    width: 100%;
+    min-width: 280px;
+    height: 350px;
+    border-radius: 12px;
+    z-index: 1;
+    overflow: hidden;
+    background: rgba(0, 0, 0, 0.2);
+}
+
+/* Electric Border Layers */
+.electric-glass-card .inner-container {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 2;
+}
+
+/* Glass Content Wrapper */
+.glass-content-wrapper {
+    position: absolute;
+    inset: 4px;
+    /* Inside border */
+    background: transparent;
+    border-radius: 8px;
+    overflow: hidden;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Icon BG */
+.electric-glass-card .card-icon-bg {
+    font-size: 5rem;
+    color: rgba(255, 255, 255, 0.1);
+    transition: transform 0.5s, opacity 0.5s, filter 0.3s, color 0.3s;
+    filter: blur(2px);
+    z-index: 0;
+}
+
+.electric-glass-card:hover .card-icon-bg {
+    transform: translateY(-50px) scale(0.8);
+    opacity: 1;
+    filter: blur(0);
+    color: var(--accent-cyan);
+    text-shadow: 0 0 30px var(--accent-cyan);
+}
+
+/* Content Panel */
+.electric-glass-card .content {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+
+    /* Default: Hidden (Transparent) */
+    background: transparent;
+    backdrop-filter: none;
+    border-top: none;
+
+    /* Position: Pushed down so only Title is visible */
+    transform: translateY(calc(100% - 70px));
+
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), background 0.5s, backdrop-filter 0.5s, border-color 0.5s;
+    z-index: 10;
+}
+
+.electric-glass-card:hover .content {
+    transform: translateY(0);
+    /* Reveal */
+    background: rgba(5, 10, 20, 0.9);
+    /* Glass ON HOVER ONLY */
+    backdrop-filter: blur(15px);
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Title */
+.electric-glass-card .contentBx h3 {
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 1.1rem;
+    letter-spacing: 1px;
+    margin-bottom: 1rem;
+    transition: color 0.3s;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+.electric-glass-card:hover .contentBx h3 {
+    color: var(--accent-cyan);
+    text-shadow: none;
+}
+
+/* Description Details */
+.electric-glass-card .details {
+    opacity: 0;
+    /* Hidden by default */
+    transform: translateY(20px);
+    transition: 0.4s;
+}
+
+.electric-glass-card:hover .details {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.1s;
+}
+
+.electric-glass-card p {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    margin-bottom: 1rem;
+}
+
+.electric-glass-card .card-badge {
+    background: rgba(0, 240, 255, 0.15);
+    color: var(--accent-cyan);
+    padding: 4px 12px;
+    border-radius: 99px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    display: inline-block;
+    border: 1px solid rgba(0, 240, 255, 0.3);
+}
