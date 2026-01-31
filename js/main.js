@@ -111,7 +111,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Select elements to reveal
     // We target generic classes so new sections are automatically picked up if they use these classes
-    const revealElements = document.querySelectorAll('.hero-title, .hero-subtitle, .hero-cta-group, .section-header, .card, .cta-content');
+    const revealElements = document.querySelectorAll('.hero-title, .hero-subtitle, .hero-cta-group, .section-header, .card, .cta-content, .journey-step');
     revealElements.forEach(el => {
         el.classList.add('reveal-on-scroll');
         observer.observe(el);
