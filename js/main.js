@@ -95,6 +95,17 @@ document.addEventListener('DOMContentLoaded', () => {
     grid.className = 'grid-overlay';
     document.body.prepend(grid);
 
+    // Button Mouse Tracking for Border Light Effect
+    document.querySelectorAll('button').forEach(btn => {
+        btn.addEventListener('mousemove', (e) => {
+            const rect = btn.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            btn.style.setProperty('--x', `${x}px`);
+            btn.style.setProperty('--y', `${y}px`);
+        });
+    });
+
     // Scroll Reveal Observer
     const observerOptions = {
         threshold: 0.1,

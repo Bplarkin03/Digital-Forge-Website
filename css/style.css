@@ -377,6 +377,78 @@ button {
     transform: translateY(-2px);
 }
 
+/* Border Light Button Style */
+.border-light-btn {
+    position: relative;
+    padding: 1rem 2rem;
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: var(--text-primary);
+    background: var(--bg-dark);
+    border: none;
+    border-radius: 9999px;
+    /* Pill shape */
+    cursor: pointer;
+    overflow: hidden;
+    text-transform: uppercase;
+    transition: transform 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+}
+
+.border-light-btn:active {
+    transform: scale(0.98);
+}
+
+/* The tracking glowing border */
+.border-light-btn::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 2px;
+    /* Border width */
+    background: radial-gradient(circle 100px at var(--x, 50%) var(--y, 50%),
+            var(--accent-cyan),
+            var(--accent-blue) 40%,
+            transparent 70%);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    z-index: -1;
+}
+
+/* Inner static border/background to ensure visibility */
+.border-light-btn::after {
+    content: "";
+    position: absolute;
+    inset: 2px;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: inherit;
+    z-index: -2;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.border-light-btn:hover::before {
+    opacity: 1;
+}
+
+.border-light-btn span {
+    position: relative;
+    z-index: 2;
+    background: linear-gradient(135deg, #fff, #ccc);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Reusing generic CTA classes for layout, overriding styles */
+.cta-button {
+    /* Resetting previous generic styles if mixed */
+}
+
 /* Magic UI Inspired Pulsating Button */
 .pulsating-button {
     position: relative;
