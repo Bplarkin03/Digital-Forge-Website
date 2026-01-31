@@ -950,15 +950,16 @@ button {
 [data-glow] {
     --border-size: 2px;
     --spotlight-size: 100px;
-    /* Reduced to 100px */
     --hue: 180;
-    /* Cyan matching brand */
-    --bg-spot-opacity: 0.05;
-    /* Dimmer background */
-    --border-light-opacity: 0.5;
-    /* Dimmer spotlight core */
-    --border-spot-opacity: 0.5;
-    /* Dimmer border glow */
+    /* Cyan for inner spotlight */
+    --border-hue: 30;
+    /* Orange for border */
+    --bg-spot-opacity: 0.02;
+    /* Extremely subtle background */
+    --border-light-opacity: 0.2;
+    /* 20% brightness spotlight core */
+    --border-spot-opacity: 1;
+    /* Keep border opaque/bright so orange is visible */
 
     position: relative;
     background-image: radial-gradient(var(--spotlight-size) var(--spotlight-size) at calc(var(--x, 0) * 1px) calc(var(--y, 0) * 1px),
@@ -978,7 +979,7 @@ button {
     /* Smoothing for tilt if present */
 }
 
-/* Masked Border Glow (The "Electric" line) */
+/* Masked Border Glow (The "Electric" line) - NOW ORANGE */
 [data-glow]::before {
     content: "";
     pointer-events: none;
@@ -991,9 +992,9 @@ button {
     background-repeat: no-repeat;
     background-position: 50% 50%;
 
-    /* The Gradient Source */
+    /* The Gradient Source - Using --border-hue (Orange) */
     background-image: radial-gradient(calc(var(--spotlight-size) * 0.75) calc(var(--spotlight-size) * 0.75) at calc(var(--x, 0) * 1px) calc(var(--y, 0) * 1px),
-            hsl(var(--hue, 180) 100% 50% / 1), transparent 100%);
+            hsl(var(--border-hue, 30) 100% 60% / 1), transparent 100%);
 
     /* The Mask Logic */
     -webkit-mask: linear-gradient(transparent, transparent), linear-gradient(white, white);
@@ -1015,7 +1016,7 @@ button {
     position: absolute;
     inset: 0;
     background-image: radial-gradient(calc(var(--spotlight-size) * 0.5) calc(var(--spotlight-size) * 0.5) at calc(var(--x, 0) * 1px) calc(var(--y, 0) * 1px),
-            hsl(0 100% 100% / 0.1), transparent 100%);
+            hsl(0 100% 100% / var(--border-light-opacity, 0.2)), transparent 100%);
     z-index: 2;
     border-radius: 16px;
 }
